@@ -95,7 +95,7 @@ export default function UserNotificationsPage() {
                     const newItems = [...data.content];
                     prev.forEach(item => {
                         if (localReadIds.includes(item.id) && !newItems.some(n => n.id === item.id)) {
-                            newItems.push({ ...item, read: true });
+                            newItems.push({ ...item, isRead: true });
                         }
                     });
                     return newItems.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
@@ -162,7 +162,7 @@ export default function UserNotificationsPage() {
     };
 
     const handleRowClick = (record: Notification) => {
-        const isCurrentlyRead = record.read || localReadIds.includes(record.id);
+        const isCurrentlyRead = record.isRead || localReadIds.includes(record.id);
         if (!isCurrentlyRead) {
             setLocalReadIds(prev => [...prev, record.id]);
             markAsReadMutation.mutate([record.id]);
@@ -208,7 +208,7 @@ export default function UserNotificationsPage() {
             key: 'message',
             width: 350,
             render: (text: string, record: Notification) => {
-                const isRead = record.read || localReadIds.includes(record.id);
+                const isRead = record.isRead || localReadIds.includes(record.id);
                 return (
                     <div className="flex items-center gap-2">
                         {!isRead && (

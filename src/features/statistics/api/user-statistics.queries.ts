@@ -18,23 +18,23 @@ export const USER_STATISTICS_KEYS = {
 // 2. API FETCHERS
 // ==========================================
 const getKpiSummary = async (): Promise<KpiSummary> => {
-    return customFetch.get('/users/statistics/kpis');
+    return customFetch.get('/user-client/statistics/kpis');
 };
 
 const getViewsChart = async (days: number): Promise<ViewTrend[]> => {
-    return customFetch.get('/users/statistics/charts/views', { params: { days } });
+    return customFetch.get('/user-client/statistics/charts/views', { params: { days } });
 };
 
 const getPostStatusBreakdown = async (): Promise<PostStatusBreakdown[]> => {
-    return customFetch.get('/users/statistics/charts/post-statuses');
+    return customFetch.get('/user-client/statistics/charts/post-statuses');
 };
 
 const getTopPosts = async (limit: number): Promise<TopPost[]> => {
-    return customFetch.get('/users/statistics/charts/top-posts', { params: { limit } });
+    return customFetch.get('/user-client/statistics/charts/top-posts', { params: { limit } });
 };
 
 const getCashFlowChart = async (months: number): Promise<CashFlow[]> => {
-    return customFetch.get('/users/statistics/charts/cash-flow', { params: { months } });
+    return customFetch.get('/user-client/statistics/charts/cash-flow', { params: { months } });
 };
 
 // ==========================================

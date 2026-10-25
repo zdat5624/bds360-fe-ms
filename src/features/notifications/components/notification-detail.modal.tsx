@@ -50,10 +50,10 @@ export function NotificationDetailModal({ isOpen, onClose, notification }: Notif
                     <Descriptions.Item label="Trạng thái">
                         {/* Dùng màu mặc định của Antd cho trạng thái */}
                         <Tag
-                            color={notification.read ? 'success' : 'processing'}
+                            color={notification.isRead ? 'success' : 'processing'}
                             variant="filled"
                         >
-                            {notification.read ? 'Đã đọc' : 'Chưa đọc'}
+                            {notification.isRead ? 'Đã đọc' : 'Chưa đọc'}
                         </Tag>
                     </Descriptions.Item>
 

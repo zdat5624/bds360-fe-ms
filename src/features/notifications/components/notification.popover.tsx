@@ -74,7 +74,7 @@ export function NotificationPopoverContent({ onClose }: NotificationPopoverProps
     };
 
     const handleItemClick = (item: any) => {
-        if (!item.read) {
+        if (!item.isRead) {
             markAsRead([item.id]);
             setRetainedItems(prev => ({ ...prev, [item.id]: { ...item, read: true } }));
         }
@@ -177,7 +177,7 @@ export function NotificationPopoverContent({ onClose }: NotificationPopoverProps
                                 key={item.id}
                                 className="flex gap-3 px-4 py-4 cursor-pointer transition-all duration-200 border-b last:border-b-0 hover:brightness-95"
                                 style={{
-                                    backgroundColor: item.read ? colorBgContainer : colorBgTextHover,
+                                    backgroundColor: item.isRead ? colorBgContainer : colorBgTextHover,
                                     borderColor: colorBorderSecondary
                                 }}
                                 onClick={() => handleItemClick(item)}
@@ -192,14 +192,14 @@ export function NotificationPopoverContent({ onClose }: NotificationPopoverProps
                                 <div className="flex-1 min-w-0 flex flex-col gap-1">
                                     <div className="flex justify-between items-start gap-2">
                                         <Text
-                                            strong={!item.read}
+                                            strong={!item.isRead}
                                             className="text-[13px] leading-snug line-clamp-3"
                                             style={{ color: colorText }}
                                         >
                                             {item.message}
                                         </Text>
 
-                                        {!item.read && (
+                                        {!item.isRead && (
                                             <div
                                                 className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 shadow-sm"
                                                 style={{ backgroundColor: colorPrimary }}
