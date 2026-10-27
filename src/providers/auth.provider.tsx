@@ -1,9 +1,12 @@
 // @/providers/auth.provider.tsx
 'use client';
 
+import { APP_ROUTES } from '@/config';
+import { ACCOUNT_STATUS } from '@/constants/account-status.constant';
 import { useGetAccount } from '@/features/auth/api/auth.queries';
 import { useAuthStore } from '@/stores/auth.store';
 import { authStorage } from '@/utils/storage.util';
+import { useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -12,7 +15,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const setUser = useAuthStore((state) => state.setUser);
     const setInitialized = useAuthStore((state) => state.setInitialized);
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+    const logout = useAuthStore((state) => state.logout);
 
+    const router = useRouter();
     // 1. KHỞI TẠO NHANH TỪ LOCALSTORAGE (Tránh delay UI)
     useEffect(() => {
         const token = authStorage.getToken();
@@ -36,9 +41,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         if (isSuccess && freshUser) {
             // Hàm setUser của bạn đã có sẵn logic lưu vào authStorage bên trong store
+
+            if (freshUser.status !== ACCOUNT_STATUS.ACTIVE) {
+                const status = freshUser.status;
+
+                logout();
+
+                router.replace(
+                    `${APP_ROUTES.ERRORS.ACCOUNT_RESTRICTED}?status=${status}`,
+                );
+
+                return;
+            }
             setUser(freshUser);
         }
-    }, [isSuccess, freshUser, setUser]);
+    }, [isSuccess, freshUser, setUser, logout, router]);
 
     return <>{children}</>;
 }

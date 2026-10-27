@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build:start": "npm run build && npm run start",
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",

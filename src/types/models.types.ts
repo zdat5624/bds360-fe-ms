@@ -1,6 +1,7 @@
 // @/types/models.types.ts
 
 import { Gender, Role } from "@/constants";
+import { AccountStatus } from "@/constants/account-status.constant";
 
 export interface User {
     id: number;
@@ -17,4 +18,6 @@ export interface User {
     updatedAt?: string;
     updatedBy?: string;
     isVerified: boolean;
+
+    status: AccountStatus;
 }

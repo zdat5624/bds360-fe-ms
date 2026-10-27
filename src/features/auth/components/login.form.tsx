@@ -2,6 +2,7 @@
 'use client';
 
 import { APP_ROUTES } from '@/config/routes';
+import { ACCOUNT_STATUS } from '@/constants/account-status.constant';
 import { LoginFormValues, loginSchema, useLoginMutation } from '@/features/auth';
 import { useAppTheme } from '@/hooks';
 import { useAuthStore } from '@/stores';
@@ -34,6 +35,7 @@ export function LoginForm() {
     const { mutate: loginMutation, isPending } = useLoginMutation();
 
     const setAuth = useAuthStore((state) => state.setAuth);
+    const logout = useAuthStore((state) => state.logout);
 
     const onSubmit = (values: LoginFormValues) => {
         loginMutation(values, {
@@ -42,6 +44,20 @@ export function LoginForm() {
                 message.success('Đăng nhập thành công!');
 
                 await new Promise((resolve) => setTimeout(resolve, 250));
+
+                if (data.user.status !== ACCOUNT_STATUS.ACTIVE) {
+                    const status = data.user.status;
+
+                    logout();
+
+                    router.replace(
+                        `${APP_ROUTES.ERRORS.ACCOUNT_RESTRICTED}?status=${status}`,
+                    );
+
+                    return;
+                }
+
+
                 router.push(APP_ROUTES.USER.DASH_BOARD);
             },
         });

@@ -37,7 +37,7 @@ export const useMarkAsRead = () => {
                     return {
                         ...oldData,
                         content: oldData.content.map((item) =>
-                            ids.includes(item.id) ? { ...item, read: true } : item
+                            ids.includes(item.id) ? { ...item, isRead: true } : item
                         ),
                     };
                 }

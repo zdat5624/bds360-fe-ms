@@ -16,19 +16,37 @@ bds360-frontend
 │     ├─ banner-real-estate.png
 │     └─ image_Pippit_202604212240.png
 ├─ README.md
+├─ README_PROJECT_TREE.md
 ├─ src
 │  ├─ app
 │  │  ├─ (back-office)
 │  │  │  └─ manage
+│  │  │     ├─ categories
+│  │  │     │  └─ page.tsx
 │  │  │     ├─ layout.tsx
 │  │  │     ├─ page.tsx
-│  │  │     └─ statistics
-│  │  │        ├─ posts
-│  │  │        │  └─ page.tsx
-│  │  │        ├─ transactions
-│  │  │        │  └─ page.tsx
-│  │  │        └─ users
-│  │  │           └─ page.tsx
+│  │  │     ├─ posts
+│  │  │     │  └─ page.tsx
+│  │  │     ├─ statistics
+│  │  │     │  ├─ posts
+│  │  │     │  │  └─ page.tsx
+│  │  │     │  ├─ transactions
+│  │  │     │  │  └─ page.tsx
+│  │  │     │  └─ users
+│  │  │     │     └─ page.tsx
+│  │  │     ├─ transactions
+│  │  │     │  └─ page.tsx
+│  │  │     ├─ users
+│  │  │     │  └─ page.tsx
+│  │  │     ├─ verifications
+│  │  │     │  └─ page.tsx
+│  │  │     └─ vips
+│  │  │        └─ page.tsx
+│  │  ├─ (errors)
+│  │  │  ├─ 403
+│  │  │  │  └─ page.tsx
+│  │  │  └─ account-restricted
+│  │  │     └─ page.tsx
 │  │  ├─ (main)
 │  │  │  ├─ (account)
 │  │  │  │  └─ user
@@ -44,6 +62,7 @@ bds360-frontend
 │  │  │  │     │     └─ page.tsx
 │  │  │  │     ├─ posts
 │  │  │  │     │  ├─ create
+│  │  │  │     │  │  ├─ CancelPostCreationModal.tsx
 │  │  │  │     │  │  ├─ confirm-post-creation.modal.tsx
 │  │  │  │     │  │  ├─ create-post-success.modal.tsx
 │  │  │  │     │  │  ├─ page.tsx
@@ -111,6 +130,7 @@ bds360-frontend
 │  │  │  ├─ data.table.tsx
 │  │  │  ├─ filter.button.tsx
 │  │  │  ├─ index.ts
+│  │  │  ├─ refresh.button.tsx
 │  │  │  └─ search.input.tsx
 │  │  ├─ composite
 │  │  │  ├─ filter.modal.tsx
@@ -132,12 +152,14 @@ bds360-frontend
 │  │     ├─ manage-sidebar.tsx
 │  │     └─ user-sidebar.tsx
 │  ├─ config
+│  │  ├─ auth-guard.config.ts
 │  │  ├─ env.ts
 │  │  ├─ fonts.ts
 │  │  ├─ index.ts
 │  │  ├─ routes.ts
 │  │  └─ theme.ts
 │  ├─ constants
+│  │  ├─ account-status.constant.ts
 │  │  ├─ gender.constant.ts
 │  │  ├─ index.ts
 │  │  ├─ listing.constant.ts
@@ -152,7 +174,6 @@ bds360-frontend
 │  │  │  ├─ api
 │  │  │  │  ├─ addresses.queries.ts
 │  │  │  │  └─ types.ts
-│  │  │  ├─ components
 │  │  │  └─ index.ts
 │  │  ├─ auth
 │  │  │  ├─ api
@@ -175,6 +196,7 @@ bds360-frontend
 │  │  │  │  └─ types.ts
 │  │  │  ├─ categories.schema.ts
 │  │  │  ├─ components
+│  │  │  │  └─ category-form.modal.tsx
 │  │  │  └─ index.ts
 │  │  ├─ media
 │  │  │  ├─ api
@@ -203,6 +225,7 @@ bds360-frontend
 │  │  │  │  ├─ posts.queries.ts
 │  │  │  │  └─ types.ts
 │  │  │  ├─ components
+│  │  │  │  ├─ bump-post.modal.tsx
 │  │  │  │  ├─ compass-selector.tsx
 │  │  │  │  ├─ delete-post.modal.tsx
 │  │  │  │  ├─ filter-modal.tsx
@@ -210,19 +233,27 @@ bds360-frontend
 │  │  │  │  ├─ for-you-posts.tsx
 │  │  │  │  ├─ hero-smart-filter-bar.tsx
 │  │  │  │  ├─ listing-card.tsx
+│  │  │  │  ├─ manage-post-detail.modal.tsx
+│  │  │  │  ├─ manage-post-filter.modal.tsx
 │  │  │  │  ├─ map-dot-marker.tsx
 │  │  │  │  ├─ map-selector.tsx
+│  │  │  │  ├─ post-approval.modal.tsx
+│  │  │  │  ├─ post-block.modal.tsx
 │  │  │  │  ├─ post-card.tsx
 │  │  │  │  ├─ post-detail.modal.tsx
 │  │  │  │  ├─ post-filter.modal.tsx
 │  │  │  │  ├─ post-popup.tsx
+│  │  │  │  ├─ post-unblock.modal.tsx
+│  │  │  │  ├─ post-undo-approval.modal.tsx
 │  │  │  │  ├─ post-view-statistics.tsx
 │  │  │  │  ├─ posts-map.tsx
 │  │  │  │  ├─ price-marker.tsx
 │  │  │  │  ├─ property-map.tsx
 │  │  │  │  ├─ related-posts.tsx
+│  │  │  │  ├─ renew-post.modal.tsx
 │  │  │  │  ├─ save-post-button.tsx
 │  │  │  │  ├─ smart-filter-bar.tsx
+│  │  │  │  ├─ toggle-post-visibility.modal.tsx
 │  │  │  │  └─ vip-marker.tsx
 │  │  │  ├─ hooks
 │  │  │  │  └─ use-post-filter-url.ts
@@ -232,6 +263,8 @@ bds360-frontend
 │  │  │  └─ posts.util.ts
 │  │  ├─ statistics
 │  │  │  ├─ api
+│  │  │  │  ├─ manage-overview-statistics.queries.ts
+│  │  │  │  ├─ manage-overview-statistics.types.ts
 │  │  │  │  ├─ manage-post-statistics.queries.ts
 │  │  │  │  ├─ manage-post-statistics.types.ts
 │  │  │  │  ├─ manage-statistics.queries.ts
@@ -242,7 +275,6 @@ bds360-frontend
 │  │  │  │  ├─ manage-user-statistics.types.ts
 │  │  │  │  ├─ user-statistics.queries.ts
 │  │  │  │  └─ user-statistics.types.ts
-│  │  │  ├─ components
 │  │  │  ├─ index.ts
 │  │  │  └─ statistics.schema.ts
 │  │  ├─ transactions
@@ -253,7 +285,8 @@ bds360-frontend
 │  │  │  ├─ components
 │  │  │  │  ├─ top-up.button.tsx
 │  │  │  │  ├─ top-up.modal.tsx
-│  │  │  │  └─ transaction-detail.modal.tsx
+│  │  │  │  ├─ transaction-detail.modal.tsx
+│  │  │  │  └─ transaction-filter.modal.tsx
 │  │  │  ├─ index.ts
 │  │  │  ├─ transactions.constant.ts
 │  │  │  └─ transactions.schema.ts
@@ -264,9 +297,14 @@ bds360-frontend
 │  │  │  │  └─ user.queries.ts
 │  │  │  ├─ components
 │  │  │  │  ├─ update-profile.form.tsx
+│  │  │  │  ├─ user-delete.modal.tsx
+│  │  │  │  ├─ user-detail.modal.tsx
+│  │  │  │  ├─ user-filter.modal.tsx
+│  │  │  │  ├─ user-form.modal.tsx
 │  │  │  │  ├─ user-info.tsx
 │  │  │  │  ├─ verification-detail.modal.tsx
 │  │  │  │  ├─ verification-history.modal.tsx
+│  │  │  │  ├─ verification-review.modal.tsx
 │  │  │  │  └─ verification-section.tsx
 │  │  │  ├─ index.ts
 │  │  │  ├─ users.constant.ts
@@ -277,6 +315,7 @@ bds360-frontend
 │  │     │  ├─ vips.mutations.ts
 │  │     │  └─ vips.queries.ts
 │  │     ├─ components
+│  │     │  ├─ update-vip-price.modal.tsx
 │  │     │  └─ vip-packages.list.tsx
 │  │     ├─ index.ts
 │  │     └─ vips.schema.ts

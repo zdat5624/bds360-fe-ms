@@ -59,5 +59,6 @@ export const APP_ROUTES = {
     ERRORS: {
         FORBIDDEN: '/403',
         INTERNAL_SERVER_ERROR: '/500',
+        ACCOUNT_RESTRICTED: '/account-restricted',
     },
 } as const;

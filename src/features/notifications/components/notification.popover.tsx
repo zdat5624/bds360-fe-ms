@@ -10,7 +10,7 @@ import Link from 'next/link'; // 👈 Import Link của Next.js
 import { useEffect, useMemo, useState } from 'react';
 import { useMarkAllAsRead, useMarkAsRead } from '../api/notifications.mutations';
 import { useGetMyNotifications } from '../api/notifications.queries';
-import { NotificationFilterParams } from '../api/types';
+import { Notification, NotificationFilterParams } from '../api/types';
 import {
     NOTIFICATION_TYPE_ICON,
     NOTIFICATION_TYPE_LABEL,
@@ -73,13 +73,17 @@ export function NotificationPopoverContent({ onClose }: NotificationPopoverProps
         setFilters(prev => ({ ...prev, size: (prev.size || 5) + 5 }));
     };
 
-    const handleItemClick = (item: any) => {
+
+    const handleItemClick = (item: Notification) => {
         if (!item.isRead) {
             markAsRead([item.id]);
-            setRetainedItems(prev => ({ ...prev, [item.id]: { ...item, read: true } }));
+
+            setRetainedItems(prev => ({
+                ...prev,
+                [item.id]: { ...item, isRead: true }
+            }));
         }
     };
-
     // --- 4. MERGE DATA ---
     const serverNotifications = data?.content || [];
     const hasMore = (data?.totalElements || 0) > serverNotifications.length;
